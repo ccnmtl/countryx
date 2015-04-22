@@ -36,6 +36,6 @@ django-waffle==0.10.1
 django-impersonate==0.9
 django-markwhat==2014.9.20
 django-appconf==1.0.1
-django_compressor==1.4
+django-compressor==1.5
 django-storages-redux==1.2.2
 django-cacheds3storage==0.1.1
