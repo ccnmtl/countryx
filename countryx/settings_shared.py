@@ -36,14 +36,7 @@ if 'test' in sys.argv or 'jenkins' in sys.argv:
         }
     }
 
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
-
-NOSE_ARGS = [
-    'countryx',
-    'countryx.sim',
-    '--with-coverage',
-    '--cover-package=countryx',
-]
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 JENKINS_TASKS = (
     'django_jenkins.tasks.run_pep8',
@@ -106,7 +99,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'countryx.sim',
     'django_statsd',
-    'django_nose',
     'django_jenkins',
     'waffle',
     'impersonate',
