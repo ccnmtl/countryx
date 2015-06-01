@@ -14,7 +14,9 @@
 {% block css %}{% endblock %}
 
 {% block js %}
+{% compress js %}
    <script type="text/javascript" src="{{STATIC_URL}}js/core.js"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block feeds %}{% endblock %}
