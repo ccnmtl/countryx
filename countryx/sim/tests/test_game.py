@@ -5,7 +5,7 @@ from countryx.sim.models import SectionGroupPlayerTurn
 from countryx.sim.models import StateRoleChoice
 from countryx.sim.models import GROUP_STATUS_NOACTION, PLAYER_STATUS_NOACTION
 from countryx.sim.models import PLAYER_STATUS_SUBMITTED, PLAYER_STATUS_PENDING
-import simplejson
+import json
 
 
 class GameTestCases(TestCase):
@@ -169,7 +169,7 @@ class GameTestCases(TestCase):
         }
         response = c.post('/sim/player/choose/', payload)
         self.assertEquals(response.status_code, 200)
-        doc = simplejson.loads(response.content)
+        doc = json.loads(response.content)
         self.assertEquals(doc['result'], 1)
 
         # verify my choice was saved in the database
@@ -199,7 +199,7 @@ class GameTestCases(TestCase):
         response = c.post('/sim/player/choose/', payload)
 
         self.assertEquals(response.status_code, 200)
-        doc = simplejson.loads(response.content)
+        doc = json.loads(response.content)
         self.assertEquals(doc['result'], 2)
 
         # verify my choice was saved in the database
@@ -222,7 +222,7 @@ class GameTestCases(TestCase):
         )
         response = c.post('/sim/player/choose/', payload)
 
-        doc = simplejson.loads(response.content)
+        doc = json.loads(response.content)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(doc['result'], 0)
 
@@ -241,7 +241,7 @@ class GameTestCases(TestCase):
         url = '/sim/faculty/reset/%d/' % section.id
         response = c.post(url, '', content_type="text/xml")
 
-        doc = simplejson.loads(response.content)
+        doc = json.loads(response.content)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(doc['message'], 'Access denied')
 
@@ -253,6 +253,6 @@ class GameTestCases(TestCase):
         self._login(c, 'admin', 'admin')
 
         response = c.post(url, '', content_type="text/xml")
-        doc = simplejson.loads(response.content)
+        doc = json.loads(response.content)
         self.assertEquals(response.status_code, 200)
         self.assertTrue(len(doc['turn1']) > 0)
