@@ -37,7 +37,7 @@ class GameStateMiddleware(object):
     def process_request(self, request):
         if request.path.startswith("/admin/") \
                 or request.path.startswith("/accounts") \
-                or request.path.startswith("/site_media") \
+                or request.path.startswith("/media") \
                 or request.META['SERVER_NAME'] == 'testserver':
             return  # skip it in admin otherwise we can't add a section
         self.write_lock.acquire()
