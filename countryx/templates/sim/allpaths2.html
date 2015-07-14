@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load hash %}
 
 {% block js %}
  <script type="text/javascript" src="{{STATIC_URL}}js/sim_allpaths.js"></script>
@@ -76,14 +75,6 @@
 	    </td>
 	    {% for s in turns.1.states %}
 	      <td id="t1s1s{{s.state_no}}" class="transition">
-		{%comment%}
-	        <div>
-		  {% hash s.transitions "1" as transition %}
-		  {{s.transitions|hashf:"1"}}
-		  {{blah}}
-
-		</div>
-		{%endcomment%}
 	      </td>
 	    {% endfor %}
 	  </tr>
