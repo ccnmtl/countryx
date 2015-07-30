@@ -10,12 +10,14 @@ function clearMessages() {
                 setStyle(elem, {'display': 'none'});
             });
 }
+var turnId = 'turn_id';
+var facultyId = 'facultyId';
 
 function submitFeedback(form, playerId) {
     clearMessages();
     if (form.feedback.value.length < 1) {
         /*jshint -W069 */
-        var id = 'error_client_' + form['turn_id'].value;
+        var id = 'error_client_' + form[turnId].value;
         $(id).innerHTML = 'Please enter some feedback before submitting.';
         setStyle($(id), {'display': 'block'});
     } else {
@@ -29,9 +31,9 @@ function submitFeedback(form, playerId) {
                     {
                         'player_id': playerId,
                         /*jshint -W069 */
-                        'turn_id': form['turn_id'].value,
+                        'turn_id': form[turnId].value,
                         'feedback': form.feedback.value,
-                        'faculty_id': form['faculty_id'].value
+                        'faculty_id': form[facultyId].value
                     })
             });
         deferred.addCallbacks(submitFeedbackSuccess, submitError);
@@ -44,11 +46,11 @@ function submitFeedbackSuccess(response) {
     var id;
     if (doc.result === 0) {
         /*jshint -W069 */
-        id = 'error_client_' + doc['turn_id'];
+        id = 'error_client_' + doc[turnId];
         $(id).innerHTML = doc.message;
         setStyle($(id), {'display': 'block'});
     } else if (doc.result === 1) {
-        id = 'success_client_' + doc['turn_id'];
+        id = 'success_client_' + doc[turnId];
         $(id).innerHTML = doc.message;
         setStyle($(id), {'display': 'block'});
     }
