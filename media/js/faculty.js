@@ -11,7 +11,7 @@ function clearMessages() {
             });
 }
 var turnId = 'turn_id';
-var facultyId = 'facultyId';
+var facultyId = 'faculty_id';
 
 function submitFeedback(form, playerId) {
     clearMessages();
