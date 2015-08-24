@@ -3,6 +3,7 @@ from .factories import (
     RoleFactory, StateFactory, StateChangeFactory,
     StateVariableFactory, StateRoleChoiceFactory,
     SectionTurnDatesFactory, SectionGroupFactory,
+    SectionGroupStateFactory, SectionGroupPlayerFactory,
 )
 
 
@@ -107,3 +108,27 @@ class TestSectionGroup(TestCase):
         StateFactory(state_no=1, turn=1)
         sg.make_state_current(1)
         self.assertEqual(sg.sectiongroupstate_set.count(), 1)
+
+
+class TestSectionGroupPlayer(TestCase):
+    def test_unicode(self):
+        p = SectionGroupPlayerFactory()
+        self.assertTrue(":" in str(p))
+
+    def test_current_status(self):
+        p = SectionGroupPlayerFactory()
+        SectionGroupStateFactory(group=p.group)
+        self.assertEqual(p.current_status(), 1)
+
+
+class TestSectionGroupState(TestCase):
+    def test_status(self):
+        sg = SectionGroupStateFactory()
+        StateFactory(turn=4)
+        self.assertEqual(sg.status(), 2)
+
+    def test_status_end(self):
+        sg = SectionGroupStateFactory()
+        sg.state.turn = 4
+        sg.state.save()
+        self.assertEqual(sg.status(), 4)
