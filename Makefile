@@ -32,10 +32,10 @@ shell: ./ve/bin/python
 	$(MANAGE) shell_plus
 
 node_modules/jshint/bin/jshint:
-	npm install jshint
+	npm install jshint --prefix=.
 
 node_modules/jscs/bin/jscs:
-	npm install jscs
+	npm install jscs --prefix=.
 
 clean:
 	rm -rf ve
