@@ -560,12 +560,6 @@ def __current_conditions(state):
     return conditions
 
 
-class FeedbackForm(forms.Form):
-    feedback = forms.CharField(widget=forms.Textarea)
-    faculty_id = forms.IntegerField(widget=forms.HiddenInput)
-    turn_id = forms.IntegerField(widget=forms.HiddenInput)
-
-
 def get_players():
     return [
         get_or_create_user(
