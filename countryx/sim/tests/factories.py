@@ -15,19 +15,22 @@ class UserFactory(factory.DjangoModelFactory):
 
 
 class RoleFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = Role
+    class Meta:
+        model = Role
     name = factory.Sequence(lambda n: 'role {0}'.format(n))
 
 
 class StateFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = State
+    class Meta:
+        model = State
     name = factory.Sequence(lambda n: 'state {0}'.format(n))
     turn = 0
     state_no = 0
 
 
 class StateChangeFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = StateChange
+    class Meta:
+        model = StateChange
     state = factory.SubFactory(StateFactory)
     president = 0
     envoy = 1
@@ -37,13 +40,15 @@ class StateChangeFactory(factory.DjangoModelFactory):
 
 
 class StateVariableFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = StateVariable
+    class Meta:
+        model = StateVariable
     state = factory.SubFactory(StateFactory)
     name = factory.Sequence(lambda n: 'variable {0}'.format(n))
 
 
 class StateRoleChoiceFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = StateRoleChoice
+    class Meta:
+        model = StateRoleChoice
     state = factory.SubFactory(StateFactory)
     role = factory.SubFactory(RoleFactory)
     choice = 0
@@ -51,7 +56,8 @@ class StateRoleChoiceFactory(factory.DjangoModelFactory):
 
 
 class SectionFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = Section
+    class Meta:
+        model = Section
     name = factory.Sequence(lambda n: 'section {0}'.format(n))
     term = factory.Sequence(lambda n: 'term {0}'.format(n))
     year = 2000
@@ -59,13 +65,15 @@ class SectionFactory(factory.DjangoModelFactory):
 
 
 class SectionTurnDatesFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = SectionTurnDates
+    class Meta:
+        model = SectionTurnDates
     section = factory.SubFactory(SectionFactory)
     turn1 = datetime.now()
 
 
 class SectionGroupFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = SectionGroup
+    class Meta:
+        model = SectionGroup
     section = factory.SubFactory(SectionFactory)
     name = factory.Sequence(lambda n: 'group {0}'.format(n))
 
