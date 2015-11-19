@@ -19,7 +19,7 @@ function toggleCharacterProfile(control, characterName) {
 
     toggle(img, 'slide');
 
-    if ('none' == getStyle(desc, 'display')) {
+    if ('none' === getStyle(desc, 'display')) {
         control.innerHTML = 'Hide Profile';
     } else {
         control.innerHTML = 'Show Profile';
@@ -35,8 +35,8 @@ function clearChoice(control) {
     var elements = getElementsByTagAndClassName(null, 'player_choice');
     forEach(elements,
             function(elem) {
-                if (elem.id != gCurrentChoice &&
-                    'none' == getStyle(elem, 'display')) {
+                if (elem.id !== gCurrentChoice &&
+                    'none' === getStyle(elem, 'display')) {
                     toggle(elem, effect);
                 }
             });
@@ -56,7 +56,7 @@ function choose(control, choice) {
         var elements = getElementsByTagAndClassName(null, 'player_choice');
         forEach(elements,
                 function(elem) {
-                    if (elem.id != choice) {
+                    if (elem.id !== choice) {
                         toggle(elem, effect);
                     }
                 });
@@ -79,7 +79,7 @@ function saveChoiceSuccess(response) {
         $('errorMsg').innerHTML = 'An error occurred while saving your ' +
             'choices. Please logout and log back in again and try to resubmit.';
         setStyle($('errorMsg'), {'display': 'block'});
-    } else if (doc.result == 1) {
+    } else if (doc.result === 1) {
         // draft -- leave the screen the way it was
         $('successMsg').innerHTML = 'Your choices have been saved.';
         setStyle($('successMsg'), {'display': 'block'});
@@ -88,7 +88,7 @@ function saveChoiceSuccess(response) {
         $('savedraft').disabled = false;
         $('submit').disabled = false;
         $('clear').disabled = false;
-    } else if (doc.result == 2) {
+    } else if (doc.result === 2) {
         // submit succeeded -- hide the selection divs
 
         // submit -- leave the screen the way it was

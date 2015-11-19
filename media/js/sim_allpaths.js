@@ -36,7 +36,7 @@
         }
 
         RoleSelector.prototype.selectNums = function(evt) {
-            var num = (typeof(evt.src) == 'function') ?
+            var num = (typeof(evt.src) === 'function') ?
                 Number(evt.src().getAttribute('data-index')) : evt;
             var classVals = '';
 
@@ -89,10 +89,11 @@
 
             var aStop = (i * 1) + 9 * (dy + signY);
             for (var a = (i * 1);
-                 a != aStop && a <= 81 && a > 0;
+                 a !== aStop && a <= 81 && a > 0;
                  a = a + (9 * signY)) {
                 var bStop = a + dx + signX;
-                for (var b = a; b != bStop && b <= 81 && b > 0; b = b + signX) {
+                for (var b = a; b !== bStop && b <= 81 && b > 0;
+                     b = b + signX) {
                     addElementClass('trans-' + (b * 1), 'selected');
                 }
             }
@@ -122,7 +123,7 @@
         GridSelector.prototype.updateSelected = function(index, purgeOthers) {
             var self = this;
             var s = self.currentSelected;
-            if (s[1] == index) {
+            if (s[1] === index) {
                 return;
             }
             if (purgeOthers ||
