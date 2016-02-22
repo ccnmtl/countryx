@@ -11,7 +11,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django import forms
-from django.forms.util import ErrorList
+from django.forms.utils import ErrorList
 from django.contrib.admin.widgets import AdminSplitDateTime
 import datetime
 import random
