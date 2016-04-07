@@ -17,7 +17,7 @@ sqlparse==0.1.19
 fake-factory==0.5.3
 factory_boy==2.6.1
 boto==2.38.0
-python-dateutil==2.5.1
+python-dateutil==2.5.2
 six==1.10.0
 gunicorn==19.3.0
 pyasn1==0.1.9
