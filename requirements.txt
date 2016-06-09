@@ -30,7 +30,7 @@ rjsmin==1.0.12
 
 djangowind==0.15.0
 django-statsd-mozilla==0.3.16
-raven==5.19.0
+raven==5.20.0
 django-smoketest==1.0.0
 django-debug-toolbar==1.4
 django-jenkins==0.18.1
