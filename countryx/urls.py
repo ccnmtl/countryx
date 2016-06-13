@@ -13,7 +13,7 @@ urlpatterns = patterns(
     (r'^admin/', include(admin.site.urls)),
     url(r'^impersonate/', include('impersonate.urls')),
     (r'^sim/', include('countryx.sim.urls')),
-    (r'^smoketest/$', include('smoketest.urls')),
+    (r'^smoketest/', include('smoketest.urls')),
     ('^stats/', TemplateView.as_view(template_name='stats.html')),
     (r'^uploads/(?P<path>.*)$',
      'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
