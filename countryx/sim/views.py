@@ -389,10 +389,12 @@ def player_game(request, group_id, turn_id=0):
                  viewable=tab_viewable(group, i), name=tab_name(i),
                  ) for i in range(1, 5)]
 
+    sgp = get_object_or_404(SectionGroupPlayer, group=group,
+                            user=request.user)
+
     # setup set of special attributes for current user
     your_player = {
-        'model': group.sectiongroupplayer_set.get(
-            user__id=request.user.id),
+        'model': sgp,
         'saved_turn': None,
         'saved_choice': None}
     your_player['submit_status'] = your_player['model'].status(working_state)
