@@ -1,6 +1,6 @@
 from django.test import TestCase, RequestFactory, Client
 
-from .factories import UserFactory, StateFactory
+from .factories import UserFactory, StateFactory, SectionGroupFactory
 from countryx.sim.views import (
     root, allpaths, allquestions, allvariables
 )
@@ -67,3 +67,11 @@ class SmoketestTest(TestCase):
     def test_smoketest(self):
         c = Client()
         c.get("/smoketest/")
+
+
+class LoggedOutTest(TestCase):
+    def test_player_game(self):
+        c = Client()
+        sg = SectionGroupFactory()
+        r = c.get("/sim/player/game/%d/" % sg.id)
+        self.assertEqual(r.status_code, 302)
