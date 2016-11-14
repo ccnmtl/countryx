@@ -367,6 +367,7 @@ def tab_viewable(group, i):
         return False
 
 
+@login_required
 def player_game(request, group_id, turn_id=0):
     group = get_object_or_404(SectionGroup, id=group_id)
 
