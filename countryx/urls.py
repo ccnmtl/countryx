@@ -5,11 +5,12 @@ from django.contrib import admin
 from django.conf import settings
 from django.views.generic import TemplateView
 
+from countryx.sim.views import root
 
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^$', 'countryx.sim.views.root'),
+    url(r'^$', root),
     url('^accounts/', include('djangowind.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^impersonate/', include('impersonate.urls')),
