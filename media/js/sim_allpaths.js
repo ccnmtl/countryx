@@ -1,3 +1,4 @@
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "global|selector" }]*/
 /*wrap code with module pattern*/
 (
     function() {
@@ -107,7 +108,7 @@
             self.selecting = true;
             self.updateSelected(index, true);
         };
-        GridSelector.prototype.onMouseUp = function(evt) {
+        GridSelector.prototype.onMouseUp = function() {
             var self = this;
             self.selecting = false;
         };

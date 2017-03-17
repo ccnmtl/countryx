@@ -1,9 +1,8 @@
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "toggleCharacterProfile|clearChoice|choose|saveChoice|control" }]*/
 var gCurrentChoice = 0;
 
 function debug(string) {
-    if (true) {
-        log(string);
-    }
+    log(string);
 }
 
 function toggleCharacterProfile(control, characterName) {
@@ -26,7 +25,7 @@ function toggleCharacterProfile(control, characterName) {
     }
 }
 
-function clearChoice(control) {
+function clearChoice() {
     clearMessages();
     gCurrentChoice = 0;
     var effect = 'blind';
