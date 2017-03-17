@@ -1,3 +1,4 @@
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "submitFeedback|submitResetRequest" }]*/
 function clearMessages() {
     var elements = getElementsByTagAndClassName(null, 'error');
     forEach(elements,
