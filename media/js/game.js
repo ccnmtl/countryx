@@ -1,9 +1,7 @@
 var gCurrentChoice = 0;
 
 function debug(string) {
-    if (true) {
-        log(string);
-    }
+    log(string);
 }
 
 function toggleCharacterProfile(control, characterName) {
