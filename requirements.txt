@@ -1,5 +1,5 @@
 --index-url https://pypi.ccnmtl.columbia.edu/
-Django==1.10.7
+Django==1.11
 Markdown==2.6.8
 simplejson==3.10.0
 uuid==1.30
@@ -20,6 +20,7 @@ pylint==1.7.0
 sqlparse==0.2.3
 ipaddress==1.0.18
 Faker==0.7.11
+pytz==2017.2
 
 factory_boy==2.8.1
 boto==2.46.1
