@@ -344,7 +344,9 @@ def get_or_create_user(username, first_name, last_name, email,
 ###############################################################################
 ###############################################################################
 
+
 GROUP_PLAYER_COUNT = 4
+
 
 GROUP_STATUS_NOACTION = 1
 GROUP_STATUS_PENDING = 2
@@ -464,6 +466,7 @@ class SectionGroupState(models.Model):
         else:
             return GROUP_STATUS_PENDING
 
+
 PLAYER_STATUS_NOACTION = 1
 PLAYER_STATUS_PENDING = 2
 PLAYER_STATUS_SUBMITTED = 4
@@ -495,6 +498,7 @@ class SectionGroupPlayer(models.Model):
             except SectionGroupPlayerTurn.DoesNotExist:
                 pass
         return action
+
 
 AUTOMATIC_UPDATE_NONE = 0
 AUTOMATIC_UPDATE_FROMDRAFT = 1
