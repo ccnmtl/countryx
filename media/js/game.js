@@ -33,12 +33,12 @@ function clearChoice() {
     // hide the other choices, leaving the one the user chose
     var elements = getElementsByTagAndClassName(null, 'player_choice');
     forEach(elements,
-            function(elem) {
-                if (elem.id !== gCurrentChoice &&
-                    'none' === getStyle(elem, 'display')) {
-                    toggle(elem, effect);
-                }
-            });
+        function(elem) {
+            if (elem.id !== gCurrentChoice &&
+                'none' === getStyle(elem, 'display')) {
+                toggle(elem, effect);
+            }
+        });
 
     // hide the feedback form underneath
     toggle($('reasoning_form'), effect);
@@ -54,11 +54,11 @@ function choose(control, choice) {
         // hide the other choices, leaving the one the user chose
         var elements = getElementsByTagAndClassName(null, 'player_choice');
         forEach(elements,
-                function(elem) {
-                    if (elem.id !== choice) {
-                        toggle(elem, effect);
-                    }
-                });
+            function(elem) {
+                if (elem.id !== choice) {
+                    toggle(elem, effect);
+                }
+            });
 
         // show the feedback form underneath
         toggle($('reasoning_form'), effect);
