@@ -2,14 +2,14 @@
 function clearMessages() {
     var elements = getElementsByTagAndClassName(null, 'error');
     forEach(elements,
-            function(elem) {
-                setStyle(elem, {'display': 'none'});
-            });
+        function(elem) {
+            setStyle(elem, {'display': 'none'});
+        });
     elements = getElementsByTagAndClassName(null, 'success');
     forEach(elements,
-            function(elem) {
-                setStyle(elem, {'display': 'none'});
-            });
+        function(elem) {
+            setStyle(elem, {'display': 'none'});
+        });
 }
 var turnId = 'turn_id';
 var facultyId = 'faculty_id';

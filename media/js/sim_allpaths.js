@@ -25,9 +25,9 @@
             var myCopy = elt.cloneNode(true);
             replaceChildNodes('fillmeup', myCopy);
             forEach(getElementsByTagAndClassName('div', null, myCopy),
-                    function(elt) {
-                        elt.id = 'trans-' + elt.getAttribute('data-index');
-                    });
+                function(elt) {
+                    elt.id = 'trans-' + elt.getAttribute('data-index');
+                });
             var selector = new GridSelector(myCopy, 9);
         }
 
@@ -73,7 +73,7 @@
                     null, 'transition-permutation', self.parent),
                 function(elt) {
                     connect(elt, 'onmouseover', self.roleSelector,
-                            'selectNums');
+                        'selectNums');
                 });
         };
 
@@ -90,11 +90,11 @@
 
             var aStop = (i * 1) + 9 * (dy + signY);
             for (var a = (i * 1);
-                 a !== aStop && a <= 81 && a > 0;
-                 a = a + (9 * signY)) {
+                a !== aStop && a <= 81 && a > 0;
+                a = a + (9 * signY)) {
                 var bStop = a + dx + signX;
                 for (var b = a; b !== bStop && b <= 81 && b > 0;
-                     b = b + signX) {
+                    b = b + signX) {
                     addElementClass('trans-' + (b * 1), 'selected');
                 }
             }
