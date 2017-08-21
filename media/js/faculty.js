@@ -48,10 +48,12 @@ function submitFeedbackSuccess(response) {
     if (doc.result === 0) {
         /*jshint -W069 */
         id = 'error_client_' + doc[turnId];
+        // eslint-disable-next-line no-unsafe-innerhtml/no-unsafe-innerhtml
         $(id).innerHTML = doc.message;
         setStyle($(id), {'display': 'block'});
     } else if (doc.result === 1) {
         id = 'success_client_' + doc[turnId];
+        // eslint-disable-next-line no-unsafe-innerhtml/no-unsafe-innerhtml
         $(id).innerHTML = doc.message;
         setStyle($(id), {'display': 'block'});
     }

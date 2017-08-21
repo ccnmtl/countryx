@@ -104,6 +104,7 @@ function saveChoiceSuccess(response) {
 }
 
 function saveChoiceError(err) {
+    // eslint-disable-next-line no-unsafe-innerhtml/no-unsafe-innerhtml
     $('errorMsg').innerHTML = err + '. This is probably a temporary error. ' +
         'We recommend that you log out and log back in again and try to ' +
         'resubmit.';
@@ -156,4 +157,5 @@ function saveChoice(control, finalsubmit) {
 function initializeGame() {
     gCurrentChoice = $('current_choice').innerHTML;
 }
+// eslint-disable-next-line scanjs-rules/call_connect
 MochiKit.Signal.connect(window, 'onload', initializeGame);
