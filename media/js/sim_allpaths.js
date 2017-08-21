@@ -1,4 +1,6 @@
 /*eslint no-unused-vars: ["error", { "varsIgnorePattern": "global|selector" }]*/
+/* eslint-disable scanjs-rules/call_connect */
+
 /*wrap code with module pattern*/
 (
     function() {

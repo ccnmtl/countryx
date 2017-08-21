@@ -10,3 +10,4 @@ node_modules/
 pip-log.txt
 .project
 .pydevproject
+package-lock.json
