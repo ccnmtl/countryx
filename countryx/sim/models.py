@@ -43,7 +43,7 @@ class State(models.Model):
     def _countedges(self, myfield, otherfield, extra=''):
         tablename = StateChange._meta.db_table
         cursor = connection.cursor()
-        cursor.execute(
+        cursor.execute(  # nosec
             'SELECT "%s", count("%s") FROM "%s" WHERE "%s"=%d %s GROUP BY "%s"'
             % (otherfield, otherfield, tablename, myfield, self.id, extra,
                otherfield))
@@ -54,13 +54,13 @@ class State(models.Model):
         myfield = StateChange._meta.get_field('next_state').column
         otherfield = StateChange._meta.get_field('state').column
         cursor = connection.cursor()
-        cursor.execute(
+        cursor.execute(  # nosec
             'SELECT "%s", count("%s") FROM "%s" WHERE "%s"=%d %s GROUP BY "%s"'
             % (otherfield, otherfield, tablename, myfield, self.id, '',
                otherfield))
         rv = []
         for row in cursor.fetchall():
-            cursor.execute(
+            cursor.execute(  # nosec
                 'SELECT count("%s") FROM "%s" WHERE "%s"=%d AND '
                 '"%s"=%d GROUP BY "%s"' % (
                     role, tablename, myfield, self.id, otherfield, row[0],
@@ -390,7 +390,7 @@ class SectionGroup(models.Model):
                 # player has no choice saved
                 player_response = SectionGroupPlayerTurn.objects.create(
                     player=player, turn=state.turn)
-                player_response.choice = random.randint(1, 3)
+                player_response.choice = random.randint(1, 3)  # nosec
                 player_response.submit_date = datetime.datetime.now()
                 player_response.automatic_update = AUTOMATIC_UPDATE_RANDOM
                 player_response.save()
@@ -423,7 +423,8 @@ class SectionGroup(models.Model):
                 state=next_state,
                 group=self,
                 date_updated=datetime.datetime.now())
-        except:
+        except (SectionGroupPlayerTurn.DoesNotExist,
+                StateChange.DoesNotExist):
             pass  # something is wrong with the group.
 
     def make_state_current(self, section_turn):

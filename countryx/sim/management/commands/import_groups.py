@@ -64,7 +64,7 @@ class Command(BaseCommand):
             user = User.objects.get(username=username)
         except User.DoesNotExist:
             if (len(password) < 1):
-                password = 'wind user'
+                password = 'wind user'  # nosec
                 user = User(username=username)
                 user.set_password(password)
                 user.set_unusable_password()

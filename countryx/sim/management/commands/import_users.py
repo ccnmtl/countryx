@@ -24,7 +24,7 @@ class Command(BaseCommand):
         try:
             user = User.objects.get(username=uni)
         except User.DoesNotExist:
-            password = 'wind user'
+            password = 'wind user'  # nosec
             user = User(username=uni,
                         first_name=first,
                         last_name=last,
