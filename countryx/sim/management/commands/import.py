@@ -25,7 +25,7 @@ class Command(BaseCommand):
         if (not email or email == ''):
             print "Please enter a valid email address"
             return False
-        if (not password or password == ''):
+        if (not password or password == ''):  # nosec
             print "Please enter a valid password"
             return False
 

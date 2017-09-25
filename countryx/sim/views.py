@@ -705,7 +705,7 @@ def handle_valid_cheat_form(request, cf):
                 StateChange.objects.filter(
                     next_state=current_state))
             # just pick one of the paths that led to the state
-            sc = random.choice(allowed_statechanges)
+            sc = random.choice(allowed_statechanges)  # nosec
             scs.append(sc)
 
         path.append(current_state)
