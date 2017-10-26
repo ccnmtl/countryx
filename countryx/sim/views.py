@@ -364,7 +364,7 @@ def tab_viewable(group, i):
     try:
         group.sectiongroupstate_set.get(state__turn=i).state
         return True
-    except:
+    except SectionGroupState.DoesNotExist:
         return False
 
 

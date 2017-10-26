@@ -386,7 +386,7 @@ class SectionGroup(models.Model):
                     player_response.automatic_update =\
                         AUTOMATIC_UPDATE_FROMDRAFT
                     player_response.save()
-            except:
+            except SectionGroupPlayerTurn.DoesNotExist:
                 # player has no choice saved
                 player_response = SectionGroupPlayerTurn.objects.create(
                     player=player, turn=state.turn)
