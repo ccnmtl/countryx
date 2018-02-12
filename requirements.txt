@@ -19,7 +19,7 @@ pylint==1.8.2
 sqlparse==0.2.4
 ipaddress==1.0.19
 text-unidecode==1.1
-Faker==0.8.10
+Faker==0.8.11
 pytz==2018.3
 
 factory_boy==2.10.0
