@@ -18,7 +18,7 @@ editdistance==0.4
 pylint==1.8.2
 sqlparse==0.2.4
 ipaddress==1.0.19
-text-unidecode==1.1
+text-unidecode==1.2
 Faker==0.8.11
 pytz==2018.3
 
