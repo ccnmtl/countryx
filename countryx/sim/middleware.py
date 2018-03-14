@@ -31,8 +31,12 @@ def ensure_consistency_of_all_sections():
 class GameStateMiddleware(object):
     __shared_state = dict(write_lock=threading.RLock())
 
-    def __init__(self):
+    def __init__(self, get_response):
         self.__dict__ = self.__shared_state
+        self.get_response = get_response
+
+    def __call__(self, request):
+        return self.get_response(request)
 
     def process_request(self, request):
         if request.path.startswith("/admin/") \

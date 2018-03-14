@@ -13,7 +13,7 @@ locals().update(
 
 PROJECT_APPS = ['countryx.sim', ]
 
-MIDDLEWARE_CLASSES += [  # noqa
+MIDDLEWARE += [  # noqa
     'countryx.sim.middleware.GameStateMiddleware',
 ]
 
