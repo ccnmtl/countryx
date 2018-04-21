@@ -1,6 +1,6 @@
 Django==1.11.12 # pyup: <2.0
 Markdown==2.6.11
-simplejson==3.13.2
+simplejson==3.14.0
 uuid==1.30
 psycopg2==2.7.4
 statsd==3.2.2
