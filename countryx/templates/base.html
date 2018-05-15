@@ -2,21 +2,23 @@
 {% load compress %}
 <html>
 <head><title>countryx: {% block title %}{% endblock %}</title>
-
-{% compress css %}
-    <link href="{% static 'css/site.css' %}" rel="stylesheet" />
-{% endcompress %}
-
-{% block css %}{% endblock %}
-
-{% compress js %}
-   <script type="text/javascript" src="{% static 'js/core.js' %}"></script>
-{% endcompress %}
-
-{% block js %}
-{% endblock %}
-
-{% block feeds %}{% endblock %}
+   
+   {% compress css %}
+       <link href="{% static 'css/site.css' %}" rel="stylesheet" />
+   {% endcompress %}
+   
+   {% block css %}{% endblock %}
+   
+   {% compress js %}
+      <script type="text/javascript" src="{% static 'js/core.js' %}"></script>
+   {% endcompress %}
+   
+   {% block js %}
+   {% endblock %}
+   
+   {% block feeds %}{% endblock %}
+   <link rel="stylesheet" href="https://search.sites.columbia.edu/cu-privacy-notice/cu-privacy-notice.css" />
+   <script src="https://search.sites.columbia.edu/cu-privacy-notice/cu-privacy-notice.js"></script>
 </head>
 <body class="{% block bodyclass %}{% endblock %}">
 
