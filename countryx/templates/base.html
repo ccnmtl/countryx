@@ -53,6 +53,7 @@ You are impersonating. <a href="{% url 'impersonate-stop' %}">stop</a>.
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', '{{GA_CODE}}', 'columbia.edu');
+  ga('set', 'anonymizeIp', true);
   ga('send', 'pageview');
 </script>
 {% endif %}
