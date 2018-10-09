@@ -17,7 +17,7 @@ logilab-astng==0.24.3
 editdistance==0.5.2
 pylint==1.9.3 # pyup: <2.0.0
 sqlparse==0.2.4
-ipaddress==1.0.21
+ipaddress==1.0.22
 text-unidecode==1.2
 Faker==0.9.1
 pytz==2018.5
