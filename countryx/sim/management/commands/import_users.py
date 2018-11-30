@@ -8,7 +8,7 @@ class Command(BaseCommand):
     def handle(self, *app_labels, **options):
         args = 'Usage: python manage.py import_users --csv csv file'
         if not options.get('csv'):
-            print args
+            print(args)
             return
 
         fh = open(options.get('csv'), 'r')

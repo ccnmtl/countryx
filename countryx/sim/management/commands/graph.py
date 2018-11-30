@@ -19,9 +19,9 @@ class Command(BaseCommand):
         for transition in transitions:
             if transition.next_state not in self.states[state]:
                 self.states[state][transition.next_state] = "foo"
-                print ('   "%s" -> "%s" [tailport=e, headport=w, color="%s"];'
+                print(('   "%s" -> "%s" [tailport=e, headport=w, color="%s"];'
                        % (transition.state, transition.next_state,
-                          self.colors[transition.state.state_no - 1]))
+                          self.colors[transition.state.state_no - 1])))
                 stack.append(transition.next_state)
 
         for s in stack:
@@ -29,28 +29,28 @@ class Command(BaseCommand):
 
     def __cluster(self, turn, cluster, label):
 
-        print '   subgraph cluster_%s {' % cluster
-        print '      style=filled;'
-        print '      color=lightgrey;'
-        print '      node [style=filled,color=white];'
+        print('   subgraph cluster_%s {' % cluster)
+        print('      style=filled;')
+        print('      color=lightgrey;')
+        print('      node [style=filled,color=white];')
         # print '      label="%s"' % label
 
         states = State.objects.filter(turn=turn).order_by("state_no")
         for state in states:
-            print '      "%s";' % (state)
+            print('      "%s";' % (state))
 
-        print '   }'
-        print ''
+        print('   }')
+        print('')
 
     def handle(self, *app_labels, **options):
         self.states = {}
 
-        print 'digraph G {'
-        print '   "T1_S1_Start" [shape=Mdiamond];'
-        print '   rankdir=LR;'
-        print '   splines=false;'
-        print '   nodesep=.4;'
-        print '   node [shape=tripleoctagon];'
+        print('digraph G {')
+        print('   "T1_S1_Start" [shape=Mdiamond];')
+        print('   rankdir=LR;')
+        print('   splines=false;')
+        print('   nodesep=.4;')
+        print('   node [shape=tripleoctagon];')
 
         self.__cluster(2, 0, "Turn 2")
         self.__cluster(3, 1, "Turn 3")
@@ -61,4 +61,4 @@ class Command(BaseCommand):
 
         self.recurse_state(state)
 
-        print '}'
+        print('}')
