@@ -19,6 +19,10 @@ import json
 from django.http import Http404
 
 
+def cmp(a, b):
+    return (a > b) - (a < b)
+
+
 @login_required
 def root(request):
     # is the user a player or an administrator?

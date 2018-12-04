@@ -1,10 +1,14 @@
+from __future__ import unicode_literals
+
 from django.db import models, connection
 from django.contrib.auth.models import User
+from django.utils.encoding import python_2_unicode_compatible
 import datetime
 import random
 import re
 
 
+@python_2_unicode_compatible
 class Role(models.Model):
     """
     A role allows a player to assume a specific persona in the game.
@@ -13,7 +17,7 @@ class Role(models.Model):
     name = models.CharField(max_length=20, unique=True)
     description = models.TextField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def display_name(self):
@@ -21,6 +25,7 @@ class Role(models.Model):
         return " ".join(p.findall(self.name))
 
 
+@python_2_unicode_compatible
 class State(models.Model):
     """
     A state represents a current country condition. Each state has a set of
@@ -37,7 +42,7 @@ class State(models.Model):
     state_no = models.IntegerField()
     name = models.CharField(max_length=40)
 
-    def __unicode__(self):
+    def __str__(self):
         return "Turn %s: %s" % (self.turn, self.name)
 
     def _countedges(self, myfield, otherfield, extra=''):
@@ -140,6 +145,7 @@ class State(models.Model):
         return metadata
 
 
+@python_2_unicode_compatible
 class StateChange(models.Model):
     state = models.ForeignKey(State, related_name="%(class)s_related_current")
     president = models.IntegerField()
@@ -149,28 +155,30 @@ class StateChange(models.Model):
     next_state = models.ForeignKey(State,
                                    related_name="%(class)s_related_next")
 
-    def __unicode__(self):
+    def __str__(self):
         return "[%s] P=%s E%s R=%s O=%s >> [%s]" % (
             self.state, self.president, self.envoy, self.regional,
             self.opposition, self.next_state)
 
 
+@python_2_unicode_compatible
 class StateVariable(models.Model):
     state = models.ForeignKey(State)
     name = models.CharField(max_length=20)
     value = models.TextField()
 
-    def __unicode__(self):
+    def __str__(self):
         return "[%s] %s: %s" % (self.state, self.name, self.value)
 
 
+@python_2_unicode_compatible
 class StateRoleChoice(models.Model):
     state = models.ForeignKey(State)
     role = models.ForeignKey(Role)
     choice = models.IntegerField()
     desc = models.CharField(max_length=250)
 
-    def __unicode__(self):
+    def __str__(self):
         return "[%s] %s: %s. %s" % (self.state, self.role,
                                     self.choice, self.desc)
 
@@ -178,13 +186,14 @@ class StateRoleChoice(models.Model):
 ###############################################################################
 
 
+@python_2_unicode_compatible
 class Section(models.Model):
     name = models.CharField(max_length=20)
     term = models.CharField(max_length=20)
     year = models.IntegerField()
     created_date = models.DateTimeField('created_date')
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s %s %s" % (self.name, self.term, self.year)
 
     def current_turn(self):
@@ -299,21 +308,23 @@ class Section(models.Model):
             group.make_state_current(section_turn)
 
 
+@python_2_unicode_compatible
 class SectionAdministrator(models.Model):
     user = models.ForeignKey(User)
     section = models.ForeignKey(Section)
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.user)
 
 
+@python_2_unicode_compatible
 class SectionTurnDates(models.Model):
     section = models.ForeignKey(Section)
     turn1 = models.DateTimeField('turn1')
     turn2 = models.DateTimeField('turn2', null=True)
     turn3 = models.DateTimeField('turn3', null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s %s %s" % (self.turn1, self.turn2, self.turn3)
 
 
@@ -353,11 +364,12 @@ GROUP_STATUS_PENDING = 2
 GROUP_STATUS_SUBMITTED = 4
 
 
+@python_2_unicode_compatible
 class SectionGroup(models.Model):
     name = models.CharField(max_length=20)
     section = models.ForeignKey(Section)
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s: Group %s" % (self.section, self.name)
 
     def status(self):
@@ -442,6 +454,7 @@ class SectionGroup(models.Model):
             self.update_state()
 
 
+@python_2_unicode_compatible
 class SectionGroupState(models.Model):
     state = models.ForeignKey(State)
     group = models.ForeignKey(SectionGroup)
@@ -450,7 +463,7 @@ class SectionGroupState(models.Model):
     class Meta:
         get_latest_by = 'date_updated'
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s %s" % (self.state, self.date_updated)
 
     def status(self):
@@ -473,12 +486,13 @@ PLAYER_STATUS_PENDING = 2
 PLAYER_STATUS_SUBMITTED = 4
 
 
+@python_2_unicode_compatible
 class SectionGroupPlayer(models.Model):
     user = models.ForeignKey(User)
     group = models.ForeignKey(SectionGroup)
     role = models.ForeignKey(Role)
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s: [%s, %s]" % (self.user, self.role.name, self.group)
 
     def current_status(self):
@@ -506,6 +520,7 @@ AUTOMATIC_UPDATE_FROMDRAFT = 1
 AUTOMATIC_UPDATE_RANDOM = 2
 
 
+@python_2_unicode_compatible
 class SectionGroupPlayerTurn(models.Model):
     player = models.ForeignKey(SectionGroupPlayer,
                                related_name="%(class)s_related_player")
@@ -523,7 +538,7 @@ class SectionGroupPlayerTurn(models.Model):
     class Meta:
         get_latest_by = 'submit_date'
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s: Turn: %s Selected: %s" % (self.player,
                                               self.turn, self.choice)
 

@@ -1,5 +1,7 @@
+from __future__ import unicode_literals
+
 from django.test import TestCase
-from .factories import (
+from countryx.sim.tests.factories import (
     RoleFactory, StateFactory, StateChangeFactory,
     StateVariableFactory, StateRoleChoiceFactory,
     SectionTurnDatesFactory, SectionGroupFactory,

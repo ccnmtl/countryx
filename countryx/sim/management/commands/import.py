@@ -23,10 +23,10 @@ class Command(BaseCommand):
         self.gd_client = gdata.spreadsheet.service.SpreadsheetsService()
 
         if (not email or email == ''):
-            print "Please enter a valid email address"
+            print("Please enter a valid email address")
             return False
         if (not password or password == ''):  # nosec
-            print "Please enter a valid password"
+            print("Please enter a valid password")
             return False
 
         # initialize the google library stuff
@@ -37,15 +37,15 @@ class Command(BaseCommand):
 
     def prepare_database(self):
         # delete old data from the tables
-        print "Deleting old simulation data..."
+        print("Deleting old simulation data...")
         StateChange.objects.all().delete()
-        print "   StateChange deleted"
+        print("   StateChange deleted")
         StateRoleChoice.objects.all().delete()
-        print "   StateRoleChoice deleted"
+        print("   StateRoleChoice deleted")
         StateVariable.objects.all().delete()
-        print "   StateVariable deleted"
+        print("   StateVariable deleted")
         State.objects.all().delete()
-        print "   States deleted"
+        print("   States deleted")
 
         # setup required roles
         self.get_or_create_role('President')
@@ -66,7 +66,7 @@ class Command(BaseCommand):
         except State.DoesNotExist:
             state = State.objects.create(name=name,
                                          state_no=state_no, turn=turn)
-            print "Creating State: %s" % (state)
+            print(("Creating State: %s" % (state)))
 
         return state
 
@@ -78,7 +78,7 @@ class Command(BaseCommand):
         return role
 
     def process_conditions(self, sheetKey, worksheetId, state):
-        print "process conditions for state: %s" % state
+        print(("process conditions for state: %s" % state))
         feed = self.gd_client.GetListFeed(sheetKey, worksheetId)
 
         for i, entry in enumerate(feed.entry):
@@ -91,10 +91,10 @@ class Command(BaseCommand):
             if (var.name):
                 var.value = var.value.replace("\n", "<br /><br />")
                 var.save()
-                print "%s" % (var)
+                print(("%s" % (var)))
 
     def process_choices(self, sheetKey, worksheetId, state):
-        print "process choices for state: %s" % state
+        print(("process choices for state: %s" % state))
         feed = self.gd_client.GetListFeed(sheetKey, worksheetId)
         role = None
 
@@ -109,7 +109,7 @@ class Command(BaseCommand):
                 roleName = roleName.replace(' ', '')
                 roleName = roleName.replace('-', '')
                 role = Role.objects.get(name=roleName)
-                print "Choices for role %s" % role
+                print(("Choices for role %s" % role))
 
             choiceno = entry.custom["choiceno"].text
             choicedesc = entry.custom["desc"].text
@@ -120,10 +120,10 @@ class Command(BaseCommand):
                 c.desc = choicedesc.replace('\n', '')
                 c.role = role
                 c.save()
-                print '%s' % c
+                print(('%s' % c))
 
     def process_transitions(self, sheetKey, worksheetId, state):
-        print "process transitions for state %s" % state
+        print(("process transitions for state %s" % state))
         feed = self.gd_client.GetListFeed(sheetKey, worksheetId)
 
         for i, entry in enumerate(feed.entry):
@@ -140,14 +140,14 @@ class Command(BaseCommand):
                 transition.next_state = self.get_or_create_state(
                     entry.custom["resultingstate"].text)
                 transition.save()
-                print "%s" % transition
+                print(("%s" % transition))
 
     def process_worksheets(self, sheetKey, state):
         feed = self.gd_client.GetWorksheetsFeed(sheetKey)
 
         if (len(feed.entry) != 3):
-            print ("%s does not have three required worksheets. Skipping..."
-                   % state)
+            print(("%s does not have three required worksheets. Skipping..."
+                   % state))
             return
 
         for i, entry in enumerate(feed.entry):
@@ -164,7 +164,7 @@ class Command(BaseCommand):
     def process_spreadsheets(self):
         feed = self.gd_client.GetSpreadsheetsFeed()
         for i, entry in enumerate(feed.entry):
-            match = re.search("t\d{1}_s\d{1}_*",
+            match = re.search(r"t\d{1}_s\d{1}_*",
                               entry.title.text, re.IGNORECASE)
             if (match):
 
@@ -178,7 +178,7 @@ class Command(BaseCommand):
                 key = id_parts[len(id_parts) - 1]
 
                 # process each of the three expected worksheets
-                print "Processing spreadsheet %s" % state
+                print(("Processing spreadsheet %s" % state))
                 self.process_worksheets(key, state)
 
     def handle(self, *app_labels, **options):
@@ -186,10 +186,10 @@ class Command(BaseCommand):
 
         if (not self.init_google_client(options.get('user'),
                                         options.get('pwd'))):
-            print args
+            print(args)
             return
         else:
-            print "Retrieving data for: ", self.gd_client.email
+            print(("Retrieving data for: ", self.gd_client.email))
 
         # delete the old data, and make sure the roles are created
         self.prepare_database()

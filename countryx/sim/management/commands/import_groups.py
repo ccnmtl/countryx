@@ -44,7 +44,7 @@ class Command(BaseCommand):
         dt = datetime.datetime.fromtimestamp(
             time.mktime(time.strptime(first_turn, time_format)))
         if (dt < datetime.datetime.now()):
-            print "The first turn close date must be in the future"
+            print("The first turn close date must be in the future")
             return
         try:
             section = Section.objects.get(
@@ -75,7 +75,7 @@ class Command(BaseCommand):
         return user
 
     def process_rows(self, rows, section):
-        print "process_rows"
+        print("process_rows")
         for row in rows:
             username = row[self.IDX_USERNAME]
             password = row[self.IDX_USER_PASSWORD]
@@ -94,9 +94,9 @@ class Command(BaseCommand):
 
                 # verify a role matching this name exists
                 if (game_role is None):
-                    print ("Invalid game role specified "
+                    print(("Invalid game role specified "
                            "[%s]"
-                           % (row[self.IDX_GAME_ROLE]))
+                           % (row[self.IDX_GAME_ROLE])))
                     return
 
                 # Verify there's no player in this
@@ -106,13 +106,13 @@ class Command(BaseCommand):
                 if (len(qs) > 0):
                     player = list(qs)[0]
                     if (player.user != user):
-                        print ("Cannot add [%s] to "
+                        print(("Cannot add [%s] to "
                                "[%s]"
                                " group as [%s] role: "
                                "Player already exists "
                                "for that role [%s]" %
                                (user, game_group,
-                                game_role, player))
+                                game_role, player)))
                         return
                 SectionGroupPlayer.objects.create(
                     user=user, group=game_group,
@@ -159,16 +159,16 @@ class Command(BaseCommand):
 
         if options.get('clean'):
             # kill everything associated with this section
-            print "Cleaning all section data..."
+            print("Cleaning all section data...")
             self.clean()
-            print "Cleaning complete"
+            print("Cleaning complete")
 
         if (not options.get('csv') or
                 not options.get('section') or
                 not options.get('term') or
                 not options.get('year') or
                 not options.get('first_turn')):
-            print args
+            print(args)
             return
 
         section = options.get('section')
