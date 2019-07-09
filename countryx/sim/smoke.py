@@ -1,5 +1,5 @@
 from smoketest import SmokeTest
-from models import State
+from countryx.sim.models import State
 
 
 class DBConnectivity(SmokeTest):
