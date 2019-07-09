@@ -22,7 +22,13 @@ Faker==1.0.7
 pytz==2019.1
 
 factory_boy==2.12.0
-boto==2.49.0
+
+# boto3 deps
+urllib3==1.25.3
+s3transfer==0.2.1
+jmespath==0.9.4
+botocore==1.12.183
+boto3==1.9.183
 
 python-dateutil==2.8.0
 six==1.12.0
@@ -48,7 +54,7 @@ django-markwhat==1.6.1
 django-appconf==1.0.3
 django-compressor==2.3
 django-storages==1.7.1
-django-cacheds3storage==0.1.2
+django-cacheds3storage==0.2.1
 django-smtp-ssl==1.0
 
 ccnmtlsettings==1.5.0
