@@ -27,7 +27,7 @@ factory_boy==2.12.0
 urllib3==1.25.3
 s3transfer==0.2.1
 jmespath==0.9.4
-botocore==1.12.193
+botocore==1.12.194
 boto3==1.9.183
 
 python-dateutil==2.8.0
