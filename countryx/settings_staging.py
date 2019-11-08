@@ -1,26 +1,26 @@
-# flake8: noqa
-from countryx.settings_shared import *
+from countryx.settings_shared import *  # noqa F403
 from ccnmtlsettings.staging import common
+from djdango.conf import settings
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 locals().update(
     common(
-        project=project,
-        base=base,
-        INSTALLED_APPS=INSTALLED_APPS,
-        STATIC_ROOT=STATIC_ROOT,
+        project=project,  # noqa F405
+        base=base,  # noqa F405
+        INSTALLED_APPS=INSTALLED_APPS,  # noqa F405
+        STATIC_ROOT=STATIC_ROOT,  # noqa F405
         cloudfront="dp0pzu8v53cf7",
     ))
 
 try:
-    from countryx.local_settings import *
+    from countryx.local_settings import *  # noqa F403
 except ImportError:
     pass
 
 if hasattr(settings, 'SENTRY_DSN'):
     sentry_sdk.init(
-        dsn=SENTRY_DSN,
+        dsn=SENTRY_DSN,  # noqa F405
         integrations=[DjangoIntegration()],
         debug=True,
     )
