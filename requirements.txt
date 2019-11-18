@@ -1,6 +1,6 @@
 Django==1.11.26 # pyup: <2.0
 Markdown==2.6.11 # pyup: < 3
-simplejson==3.16.0
+simplejson==3.17.0
 psycopg2==2.8.4
 statsd==3.3.0
 coverage==4.5.4
@@ -34,7 +34,7 @@ boto3>=1.10.0,<1.11.0
 python-dateutil==2.8.1
 six==1.13.0
 gunicorn==20.0.0
-pyasn1==0.4.7
+pyasn1==0.4.8
 pyOpenSSL==19.1.0
 ndg-httpsclient==0.5.1
 contextlib2==0.6.0.post1
