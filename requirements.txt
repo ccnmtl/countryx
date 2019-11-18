@@ -1,6 +1,6 @@
 Django==1.11.26 # pyup: <2.0
 Markdown==2.6.11 # pyup: < 3
-simplejson==3.16.0
+simplejson==3.17.0
 psycopg2==2.8.4
 statsd==3.3.0
 coverage==4.5.4
