@@ -12,7 +12,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django import forms
 from django.forms.utils import ErrorList
-from django.contrib.admin.widgets import AdminSplitDateTime
 import datetime
 import random
 import json
@@ -212,8 +211,8 @@ def faculty_player_detail(request, player_id):
 def faculty_feedback_submit(request):
     response = {}
     player_id = request.POST.get('player_id', None)
-    faculty_id = int(request.POST.get('faculty_id', None))
-    turn_id = int(request.POST.get('turn_id', None))
+    faculty_id = int(request.POST.get('faculty_id', 0))
+    turn_id = int(request.POST.get('turn_id', 0))
     feedback = request.POST.get('feedback', '')
 
     player = get_object_or_404(SectionGroupPlayer, id=player_id)
@@ -293,7 +292,8 @@ def faculty_section_manage(request, section_id, updated=False):
 
         form = TurnManagementForm(initial=initial)
 
-    return render_to_response(
+    return render(
+        request,
         'sim/faculty_section_manage.html', {
             'user': request.user,
             'section': section,
@@ -319,12 +319,9 @@ class TurnManagementForm(forms.Form):
     section_term = forms.CharField()
     section_year = forms.CharField()
 
-    turn1 = DateTimeFieldEx(
-        widget=AdminSplitDateTime, required=True, label="Turn 1 Close Date")
-    turn2 = DateTimeFieldEx(
-        widget=AdminSplitDateTime, required=False, label="Turn 2 Close Date")
-    turn3 = DateTimeFieldEx(
-        widget=AdminSplitDateTime, required=False, label="Turn 3 Close Date")
+    turn1 = DateTimeFieldEx(required=True, label="Turn 1 Close Date")
+    turn2 = DateTimeFieldEx(required=False, label="Turn 2 Close Date")
+    turn3 = DateTimeFieldEx(required=False, label="Turn 3 Close Date")
 
     def __compare(self, cleaned_data, fieldOne, fieldTwo, labelOne, labelTwo):
         if (fieldTwo in cleaned_data and

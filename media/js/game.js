@@ -132,9 +132,14 @@ function saveChoice(control, finalsubmit) {
         $('submit').disabled = true;
         $('clear').disabled = true;
 
+        var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
+        var elt = getElement('csrf-token');
+        var token = getNodeAttribute(elt, 'content');
+        headers['X-CSRFToken'] = token;
+
         var parts = location.href.split('/');
         var groupid = parts[parts.length - 2];
-        var url = 'http://' + location.hostname + ':' +
+        var url = 'https://' + location.hostname + ':' +
             location.port + '/sim/player/choose/';
 
         var q = queryString(
@@ -146,7 +151,7 @@ function saveChoice(control, finalsubmit) {
             url,
             {
                 method: 'POST',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                headers: headers,
                 sendContent: q
             }
         );

@@ -8,8 +8,6 @@
    {{ block.super }}
       
    <script type="text/javascript" src="{{STATIC_URL}}admin/js/core.js"></script>
-   <script type="text/javascript" src="{{STATIC_URL}}admin/js/calendar.js"></script>
-   <script type="text/javascript" src="{{STATIC_URL}}admin/js/admin/DateTimeShortcuts.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -19,7 +17,7 @@
 
    {% ifnotequal section.current_turn 4 %}
 
-   <form action="end_turn/" method="post">
+   <form action="end_turn/" method="post">{% csrf_token %}
      <fieldset><legend>Manually Advance Turn</legend>
        <!-- todo: put in options for selecting choices on roles
 	    that haven't submitted -->
@@ -55,7 +53,7 @@
    {% endifequal %}
 
 
-    <form action="." method="POST">
+    <form action="." method="POST">{% csrf_token %}
       <fieldset>
 	<legend>Adjust Section Info</legend>
 	<div class="fieldWrapper">
