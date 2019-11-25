@@ -39,7 +39,7 @@
 	    	<br />
 	    	<hr />
 	    	 	<br />
-	      <form method="post" action="/sim/player/game/{{group.id}}/">  <input class="center" type="submit" value="Play The Game" /></form>
+	      <form method="post" action="/sim/player/game/{{group.id}}/">{% csrf_token %}  <input class="center" type="submit" value="Play The Game" /></form>
 	    
 	    	
 	    	</div>

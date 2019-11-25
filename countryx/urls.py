@@ -9,6 +9,7 @@ from countryx.sim.views import root
 
 admin.autodiscover()
 
+
 urlpatterns = [
     url(r'^$', root),
     url('^accounts/', include('djangowind.urls')),

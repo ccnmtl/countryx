@@ -65,7 +65,7 @@
 				{% ifequal submit_status 4 %}
 				   <div id="error_client_{{state.turn}}" class="error invisible"></div>
                <div id="success_client_{{state.turn}}" class="success invisible"></div>
-               <form onsubmit="return submitFeedback(this, {{player.id}});">
+               <form onsubmit="return submitFeedback(this, {{player.id}});" method="POST">
 						<div class="fieldWrapper">
 						   <label for="id_feedback">Feedback:</label><br />
 					      {{ form.feedback }}

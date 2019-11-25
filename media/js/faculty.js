@@ -22,21 +22,28 @@ function submitFeedback(form, playerId) {
         $(id).innerHTML = 'Please enter some feedback before submitting.';
         setStyle($(id), {'display': 'block'});
     } else {
-        var url = 'http://' + location.hostname + ':' + location.port +
+        var url = 'https://' + location.hostname + ':' + location.port +
             '/sim/faculty/feedback/';
+
+        var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
+        var elt = getElement('csrf-token');
+        var token = getNodeAttribute(elt, 'content');
+        headers['X-CSRFToken'] = token;
+
+        var q = queryString({
+            'player_id': playerId,
+            'turn_id': form[turnId].value,
+            'feedback': form.feedback.value,
+            'faculty_id': form[facultyId].value
+        });
         var deferred = doXHR(
             url,
             {
                 method: 'POST',
-                sendContent: queryString(
-                    {
-                        'player_id': playerId,
-                        /*jshint -W069 */
-                        'turn_id': form[turnId].value,
-                        'feedback': form.feedback.value,
-                        'faculty_id': form[facultyId].value
-                    })
-            });
+                headers: headers,
+                sendContent: q
+            }
+        );
         deferred.addCallbacks(submitFeedbackSuccess, submitError);
     }
     return false;
