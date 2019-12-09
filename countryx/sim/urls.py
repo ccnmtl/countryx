@@ -1,8 +1,9 @@
-import django.contrib.auth.views
-import django.views.static
 import os.path
+
 from django.conf.urls import url
-from .views import (
+import django.views.static
+
+from countryx.sim.views import (
     root, cheat, allpaths, player_choose, faculty_feedback_submit,
     allquestions, allvariables, check_statechanges, player_game,
     faculty_group_detail, faculty_player_detail_byturn,
@@ -10,14 +11,13 @@ from .views import (
     faculty_section_bygroup, faculty_section_byplayer, faculty_end_turn,
 )
 
+
 media_root = os.path.join(os.path.dirname(__file__), "media")
 
 urlpatterns = [
     url(r'^media/(?P<path>.*)$', django.views.static.serve,
         {'document_root': media_root}),
     url(r'^$', root),
-    url(r'^logout/$', django.contrib.auth.views.logout,
-        {'template_name': 'sim/logged_out.html'}),
 
     # player pages
     url(r'^player/game/(?P<group_id>\d+)/$', player_game),
