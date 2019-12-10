@@ -13,7 +13,7 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^$', root),
     url('^accounts/', include('djangowind.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^impersonate/', include('impersonate.urls')),
     url(r'^sim/', include('countryx.sim.urls')),
     url(r'^smoketest/', include('smoketest.urls')),

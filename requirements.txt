@@ -1,5 +1,5 @@
-Django==1.11.26 # pyup: <2.0
-Markdown==2.6.11 # pyup: < 3
+Django==2.2.8
+Markdown==3.1.1
 simplejson==3.17.0
 psycopg2==2.8.4
 statsd==3.3.0
@@ -8,7 +8,6 @@ pyflakes==2.1.1
 pep8==1.7.1
 mccabe==0.6.1
 pycodestyle==2.5.0
-enum34==1.1.6; python_version < '3.4'
 configparser==4.0.2
 flake8==3.7.9
 logilab-common==1.5.2
@@ -67,6 +66,4 @@ pyyaml==5.2
 stevedore>=1.20.0 # Apache-2.0
 bandit==1.6.2
 
-typing==3.7.4.1; python_version < '3.5'
-functools32==3.2.3-2; python_version < '3'
 entrypoints==0.3

@@ -10,26 +10,20 @@
 <div id="nav">
    {% block nav %}
       <a class="nav" href="/sim"/>Home</a> |
-      <a class="nav" href="/sim/logout/">Logout ({{ user.username }})</a> |
+      <a class="nav" href="/accounts/logout/?next=/">Logout ({{ user.username }})</a> |
    {% endblock %}
 </div>
 
 {% block masthead %}
 <div id="simlogo">
-<a href="/sim/"><img src="{{STATIC_URL}}images/countryx_logo.png" alt="Country X" /></a>
+    <a href="/sim/"><img src="{{STATIC_URL}}images/countryx_logo.png" alt="Country X" /></a>
 </div>
-
- <!--  <a href="http://ccnmtl.columbia.edu">CCMNMTL LOGO</a>
-           <div id="masthead_desc">Descriptive Tag Line Goes Here</div>-->
-         
-         
-         <div id="login_credentials">
-            {{user.username}} | <a href="/sim/logout/">Logout</a> |
-            <a href="/about/">About</a> | <a href="/help/">Help</a> | <a href="/contact/">Contact</a>
-            <br />
-            <br />
-            
-         </div><!-- div  id="login_credentials" -->
+ <div id="login_credentials">
+    {{user.username}} | <a href="/accounts/logout/?next=/">Logout</a> |
+    <a href="/about/">About</a> | <a href="/help/">Help</a> | <a href="/contact/">Contact</a>
+    <br />
+    <br />
+ </div><!-- div  id="login_credentials" -->
 {% endblock %}
 
 {% block content %}

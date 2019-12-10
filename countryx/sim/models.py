@@ -147,13 +147,15 @@ class State(models.Model):
 
 @python_2_unicode_compatible
 class StateChange(models.Model):
-    state = models.ForeignKey(State, related_name="%(class)s_related_current")
+    state = models.ForeignKey(State, related_name="%(class)s_related_current",
+                              on_delete=models.CASCADE)
     president = models.IntegerField()
     envoy = models.IntegerField()
     regional = models.IntegerField()
     opposition = models.IntegerField()
     next_state = models.ForeignKey(State,
-                                   related_name="%(class)s_related_next")
+                                   related_name="%(class)s_related_next",
+                                   on_delete=models.CASCADE)
 
     def __str__(self):
         return "[%s] P=%s E%s R=%s O=%s >> [%s]" % (
@@ -163,7 +165,7 @@ class StateChange(models.Model):
 
 @python_2_unicode_compatible
 class StateVariable(models.Model):
-    state = models.ForeignKey(State)
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     value = models.TextField()
 
@@ -173,8 +175,8 @@ class StateVariable(models.Model):
 
 @python_2_unicode_compatible
 class StateRoleChoice(models.Model):
-    state = models.ForeignKey(State)
-    role = models.ForeignKey(Role)
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE)
     choice = models.IntegerField()
     desc = models.CharField(max_length=250)
 
@@ -310,8 +312,8 @@ class Section(models.Model):
 
 @python_2_unicode_compatible
 class SectionAdministrator(models.Model):
-    user = models.ForeignKey(User)
-    section = models.ForeignKey(Section)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
 
     def __str__(self):
         return "%s" % (self.user)
@@ -319,7 +321,7 @@ class SectionAdministrator(models.Model):
 
 @python_2_unicode_compatible
 class SectionTurnDates(models.Model):
-    section = models.ForeignKey(Section)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
     turn1 = models.DateTimeField('turn1')
     turn2 = models.DateTimeField('turn2', null=True)
     turn3 = models.DateTimeField('turn3', null=True)
@@ -367,7 +369,7 @@ GROUP_STATUS_SUBMITTED = 4
 @python_2_unicode_compatible
 class SectionGroup(models.Model):
     name = models.CharField(max_length=20)
-    section = models.ForeignKey(Section)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
 
     def __str__(self):
         return "%s: Group %s" % (self.section, self.name)
@@ -456,8 +458,8 @@ class SectionGroup(models.Model):
 
 @python_2_unicode_compatible
 class SectionGroupState(models.Model):
-    state = models.ForeignKey(State)
-    group = models.ForeignKey(SectionGroup)
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
+    group = models.ForeignKey(SectionGroup, on_delete=models.CASCADE)
     date_updated = models.DateTimeField('date updated')
 
     class Meta:
@@ -488,9 +490,9 @@ PLAYER_STATUS_SUBMITTED = 4
 
 @python_2_unicode_compatible
 class SectionGroupPlayer(models.Model):
-    user = models.ForeignKey(User)
-    group = models.ForeignKey(SectionGroup)
-    role = models.ForeignKey(Role)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    group = models.ForeignKey(SectionGroup, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE)
 
     def __str__(self):
         return "%s: [%s, %s]" % (self.user, self.role.name, self.group)
@@ -523,7 +525,8 @@ AUTOMATIC_UPDATE_RANDOM = 2
 @python_2_unicode_compatible
 class SectionGroupPlayerTurn(models.Model):
     player = models.ForeignKey(SectionGroupPlayer,
-                               related_name="%(class)s_related_player")
+                               related_name="%(class)s_related_player",
+                               on_delete=models.CASCADE)
     turn = models.IntegerField()
     choice = models.IntegerField(null=True)
     reasoning = models.TextField(null=True)
@@ -532,7 +535,8 @@ class SectionGroupPlayerTurn(models.Model):
     feedback = models.TextField(null=True)
     faculty = models.ForeignKey(SectionAdministrator,
                                 related_name="%(class)s_related_faculty",
-                                null=True)
+                                null=True,
+                                on_delete=models.CASCADE)
     feedback_date = models.DateTimeField('feedback submitted', null=True)
 
     class Meta:

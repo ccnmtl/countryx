@@ -1,5 +1,8 @@
-from countryx.sim.models import Section
 import threading
+
+from django.utils.deprecation import MiddlewareMixin
+
+from countryx.sim.models import Section
 
 
 def ensure_consistency_of_all_sections():
@@ -28,15 +31,12 @@ def ensure_consistency_of_all_sections():
 #      (and is the driving force for this entire middleware)
 
 
-class GameStateMiddleware(object):
+class GameStateMiddleware(MiddlewareMixin):
     __shared_state = dict(write_lock=threading.RLock())
 
     def __init__(self, get_response):
         self.__dict__ = self.__shared_state
         self.get_response = get_response
-
-    def __call__(self, request):
-        return self.get_response(request)
 
     def process_request(self, request):
         if request.path.startswith("/admin/") \
