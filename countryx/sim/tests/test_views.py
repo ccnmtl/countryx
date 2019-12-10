@@ -1,6 +1,7 @@
 from django.test import TestCase, RequestFactory, Client
 
-from .factories import UserFactory, StateFactory, SectionGroupFactory
+from countryx.sim.tests.factories import UserFactory, StateFactory, \
+    SectionGroupFactory
 from countryx.sim.views import (
     root, allpaths, allquestions, allvariables
 )
