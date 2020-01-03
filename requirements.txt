@@ -40,7 +40,7 @@ contextlib2==0.6.0.post1
 rcssmin==1.0.6
 rjsmin==1.0.12
 
-djangowind==1.2.2
+djangowind==1.2.3
 django-statsd-mozilla==0.4.0
 raven==6.10.0
 certifi==2019.11.28  # sentry-sdk
