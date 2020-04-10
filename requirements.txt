@@ -4,7 +4,7 @@ simplejson==3.17.0
 psycopg2==2.8.4
 statsd==3.3.0
 coverage==5.0.4
-pyflakes==2.1.1
+pyflakes==2.2.0
 pep8==1.7.1
 mccabe==0.6.1
 pycodestyle==2.5.0
