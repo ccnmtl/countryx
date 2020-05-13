@@ -1,5 +1,5 @@
 Django==2.2.12 # pyup: <3.0
-Markdown==3.2.1
+Markdown==3.2.2
 simplejson==3.17.0
 psycopg2==2.8.5
 statsd==3.3.0
