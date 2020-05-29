@@ -9,8 +9,7 @@ locals().update(
         project=project,  # noqa F405
         base=base,  # noqa F405
         INSTALLED_APPS=INSTALLED_APPS,  # noqa F405
-        STATIC_ROOT=STATIC_ROOT,  # noqa F405
-        cloudfront="dp0pzu8v53cf7",
+        STATIC_ROOT=STATIC_ROOT  # noqa F405
     ))
 
 try:
