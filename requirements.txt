@@ -1,4 +1,4 @@
-Django==2.2.12,<3
+Django>=2.2.12,<3
 Markdown==3.2.2
 simplejson==3.17.0
 psycopg2==2.8.5
@@ -11,8 +11,8 @@ pycodestyle==2.6.0
 configparser==5.0.0
 importlib-metadata==1.6.0  # for flake8
 zipp==3.1.0  # for flake8
-flake8==3.8.1
-logilab-common==1.6.3
+flake8==3.8.2
+logilab-common==1.6.4
 logilab-astng==0.24.3
 editdistance==0.5.3
 pylint==2.5.2
@@ -47,7 +47,7 @@ django-statsd-mozilla==0.4.0
 raven==6.10.0
 certifi==2020.4.5.1  # sentry-sdk
 sentry-sdk==0.14.4
-django-smoketest==1.1.0
+django-smoketest==1.1.2
 django-debug-toolbar==2.2
 
 django-ga-context==0.1.0
@@ -57,11 +57,11 @@ django-waffle==0.20.0
 django-markwhat==1.6.2
 django-appconf==1.0.4
 django-compressor==2.4
-django-storages==1.8 # pyup: <1.9
+django-storages==1.9.1
 django-cacheds3storage==0.2.1
 django-smtp-ssl==1.0
 
-ccnmtlsettings==1.8.0
+ccnmtlsettings==1.8.2
 
 pbr==5.4.5
 pyyaml==5.3.1
